@@ -1,0 +1,58 @@
+{
+  "name": "dsh-quit",
+  "version": "0.8.2",
+  "description": "DSHM 端侧退出插件：在侧栏底部账户菜单里注入「退出 dsh」——原生菜单项外壳 + 危险色文字 + 电源图标 + 分隔线（显眼但不破坏官方菜单风格），确认后直接关掉 App 回桌面（SIGKILL→abort→exit→koffi _exit 四级）。",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yinghan-123/dsh-quit.git"
+  },
+  "homepage": "https://github.com/yinghan-123/dsh-quit#readme",
+  "bugs": {
+    "url": "https://github.com/yinghan-123/dsh-quit/issues"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "dshm",
+    "quit",
+    "shutdown",
+    "exit",
+    "restart"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "meta": {
+    "title": "退出与重启",
+    "description": "侧栏底部电源按钮：一键退出 dsh（先请 App 原生停止，8 秒没反应则强制退出）或重启 dsh 服务。"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dsh": ">=0.2.0-rc.1 <0.3.0-0"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}
